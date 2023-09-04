@@ -1,8 +1,8 @@
 # Service Level Indicators (SLI)
 
-**Throughput:** The number of records we can process per second. Usually meassured in batch processing systems.
+**Throughput:** The number of records we can process per second. Usually measured in batch processing systems.
 
-**Response Time:** The time between a client sending a request and receiving a response. Usually meassured in online systems.
+**Response Time:** The time between a client sending a request and receiving a response. Usually measured in online systems.
 
 Response time includes:
 
