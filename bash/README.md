@@ -1,6 +1,12 @@
 # Bash
 
-## Arrays
+- [1. Arrays](#1-arrays)
+- [2. Associative Arrays](#2-associative-arrays)
+- [3. Indenting Here-Documents](#3-indenting-here-documents)
+- [4. Include Guards](#4-include-guards)
+- [5. Footnotes](#5-footnotes)
+
+## 1. Arrays
 
 <!-- prettier-ignore-start -->
 
@@ -24,11 +30,40 @@
 
 <!-- prettier-ignore-end -->
 
-## Here-Documents
+## 2. Associative Arrays
+
+1. Declare an Associative Array
+
+   ```bash
+   declare -A months
+   ```
+
+1. Add Values
+
+   ```bash
+   months["january"]=1
+   months["february"]=2
+   months["march"]=3
+   ...
+   ```
+
+1. Iterate keys
+
+   ```bash
+   for key in "${!months[@]}"; do echo $key; done
+   ```
+
+1. Iterate Values
+
+   ```bash
+   for val in "${months[@]}"; do echo $val; done
+   ```
+
+## 3. Indenting Here-Documents
 
 ### Problem
 
-The here-document is great, but it’s messing up your shell script’s formatting. You want to be able to indent for readability.
+The here-document is great, but it’s messing up your shell script’s formatting. You want to be able to indent for readability[^1].
 
 ### Solution
 
@@ -51,6 +86,20 @@ Before we start with tabs vs spaces debate... The only thing that matters is CON
 
 Tools like [shfmt](https://github.com/mvdan/sh) and [gofmt](https://pkg.go.dev/cmd/gofmt) use tabs by default and there is nothing wrong with it.
 
-### References
+## 4. Include Guards
 
-1. bash Cookbook - Carl Albing, JP Vossen, Cameron Newham
+To prevent a file to be ~~included~~ sourced multiple times, you can add the following mechanism as an include guard:
+
+lib/log.sh
+
+```bash
+#!/bin/bash
+
+[[ -n $LIB_LOG ]] && return || readonly LIB_LOG=true
+
+<your code here>
+```
+
+## 5. Footnotes
+
+[^1]: bash Cookbook - Carl Albing, JP Vossen
