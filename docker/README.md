@@ -211,12 +211,12 @@ RUN apt-get update && apt-get install --no-install-recommends --assume-yes \
     && rm -rf /var/lib/apt/lists/*
 ```
 
-##### yum
+##### yum / dnf
 
 ```Dockerfile
 FROM amazonlinux:2
 
-RUN yum install -y \
+RUN yum install --nodocs -y \
     package-1 \
     package-2 \
     package-3 \
@@ -231,6 +231,17 @@ FROM python:3.10-alpine
 RUN pip install --no-cache-dir \
     flask==2.0.2
 ```
+
+##### npm
+
+```Dockerfile
+FROM nodejs:20.18-alpine
+
+RUN npm install --cache /tmp/npm \
+   package@version \
+   && rm -rf /tmp/npm
+```
+
 
 ### 2.3 Minimize the number of layers
 
